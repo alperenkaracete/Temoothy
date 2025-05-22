@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4] - 2025-05-23
+### Added
+[+] Added project starter files.
+[+] Added character move/slide.
+[+] Added character jump.
+[+] Added character movement speed limit.
+
 ## [0.0.3] - 2025-05-22
 ### Added
 [+] Completed the project setup.
