@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.3] - 2025-05-22
+### Added
+[+] Completed the project setup.
+
 ## [0.0.2] - 2025-05-22
 ### Added
 [+] Required Unity packages have been added.
