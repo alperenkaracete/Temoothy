@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -48,7 +49,20 @@ public class PlayerController : MonoBehaviour
     {
         SetInputs();
         SetState();
+        SetMovementSpeed();
         LimitPlayerSpeed();
+    }
+
+    private void SetMovementSpeed()
+    {
+        if (_state == PlayerState.Idle)
+            _currentSpeed = 0;
+
+        else if (_state == PlayerState.Move)
+            _currentSpeed = _movementSpeed;
+
+        else if (_state == PlayerState.Slide)
+            _currentSpeed = _slideSpeed;
     }
 
     void FixedUpdate()
@@ -70,13 +84,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(_slideActivateKey))
         {
             isSliding = true;
-            _currentSpeed = _slideSpeed;
         }
 
         else if (Input.GetKeyDown(_moveActivateKey))
         {
             isSliding = false;
-            _currentSpeed = _movementSpeed;
         }
     }
 
@@ -134,6 +146,11 @@ public class PlayerController : MonoBehaviour
     bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.5f + 0.2f, _groundLayer);
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return _currentSpeed;
     }
 
 }
