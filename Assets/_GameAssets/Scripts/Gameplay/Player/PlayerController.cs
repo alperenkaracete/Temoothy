@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform _orientationTransform;
     [SerializeField] private float _currentSpeed;
+    [SerializeField] private PlayerState _state;
 
     [Header("Movement")]
     [SerializeField] private float _movementSpeed;
@@ -24,16 +26,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _slideSpeed;
     [SerializeField] private KeyCode _slideActivateKey;
 
-    
+
 
 
     private Vector3 _movementDirection;
+    private StateController _currentState;
+    private bool isSliding = false;
 
     private float _horizantolInput, _verticalInput;
 
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
+        _currentState = GetComponent<StateController>();
         _rigidBody.freezeRotation = true;
         _currentSpeed = _movementSpeed;
 
@@ -42,6 +47,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         SetInputs();
+        SetState();
         LimitPlayerSpeed();
     }
 
@@ -62,10 +68,40 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKeyDown(_slideActivateKey))
+        {
+            isSliding = true;
             _currentSpeed = _slideSpeed;
+        }
 
         else if (Input.GetKeyDown(_moveActivateKey))
+        {
+            isSliding = false;
             _currentSpeed = _movementSpeed;
+        }
+    }
+
+    void SetState()
+    {
+        PlayerState newState = _currentState.GetPlayerState();
+        Vector3 movementDirectionNormalized = _movementDirection.normalized;
+        bool isGrounded = IsGrounded();
+
+        if (movementDirectionNormalized != Vector3.zero && isGrounded && !isSliding)
+            newState = PlayerState.Move;
+        else if (movementDirectionNormalized != Vector3.zero && isGrounded && isSliding)
+            newState = PlayerState.Slide;
+        else if (movementDirectionNormalized == Vector3.zero && isGrounded && !isSliding)
+            newState = PlayerState.Idle;
+        else if (movementDirectionNormalized == Vector3.zero && isGrounded && isSliding)
+            newState = PlayerState.SlideIdle;
+        else if (!isGrounded)
+            newState = PlayerState.Jump;
+
+        if (_currentState.GetPlayerState() != newState)
+        {
+            _currentState.SetPlayerState(newState);
+            _state = newState;
+        }
     }
 
     void SetMovement()
