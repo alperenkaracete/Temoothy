@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.5] - 2025-05-23
+### Added
+[+] Added camera follow system for 3rd person character.
+[~] Fixed character rotation problem.
+
 ## [0.0.4] - 2025-05-23
 ### Added
 [+] Added project starter files.

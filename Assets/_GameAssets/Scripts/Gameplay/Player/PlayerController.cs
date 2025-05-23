@@ -1,5 +1,3 @@
-using DG.Tweening;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,6 +6,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform _orientationTransform;
+    [SerializeField] private float _currentSpeed;
 
     [Header("Movement")]
     [SerializeField] private float _movementSpeed;
@@ -25,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _slideSpeed;
     [SerializeField] private KeyCode _slideActivateKey;
 
-    private float _currentSpeed;
+    
 
 
     private Vector3 _movementDirection;
@@ -76,6 +75,18 @@ public class PlayerController : MonoBehaviour
         _rigidBody.AddForce(_movementDirection.normalized * _currentSpeed, ForceMode.Force);
     }
 
+    void LimitPlayerSpeed()
+    {
+        Vector3 flatVelocity = new Vector3(_rigidBody.linearVelocity.x, 0f, _rigidBody.linearVelocity.z);
+
+        if (flatVelocity.magnitude > _movementSpeed)
+        {
+
+            Vector3 limitedVelocity = flatVelocity.normalized * _movementSpeed;
+            _rigidBody.linearVelocity = new Vector3(limitedVelocity.x, 0f, limitedVelocity.z);
+        }
+    }
+
     void SetJumping()
     {
 
@@ -89,15 +100,4 @@ public class PlayerController : MonoBehaviour
         return Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.5f + 0.2f, _groundLayer);
     }
 
-    void LimitPlayerSpeed()
-    {
-        Vector3 flatVelocity = new Vector3(_rigidBody.linearVelocity.x, 0f, _rigidBody.linearVelocity.z);
-
-        if (flatVelocity.magnitude > _movementSpeed)
-        {
-
-            Vector3 limitedVelocity = flatVelocity.normalized * _movementSpeed;
-            _rigidBody.linearVelocity = new Vector3(limitedVelocity.x, 0f, limitedVelocity.z);
-        }
-    }
 }
