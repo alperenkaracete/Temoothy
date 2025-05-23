@@ -1,8 +1,19 @@
 # Changelog
 
+## [0.0.6] - 2025-05-23
+
+### Added
+- Added `PlayerState` enum to define player action states.
+- Added `StateController` for managing and updating the current player state.
+
+### Fixed
+- Updated `PlayerController` for state handling logic to use new `PlayerState` enum values.
+
 ## [0.0.5] - 2025-05-23
 ### Added
 [+] Added camera follow system for 3rd person character.
+
+### Fixed
 [~] Fixed character rotation problem.
 
 ## [0.0.4] - 2025-05-23
