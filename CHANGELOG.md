@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.0] - 2025-05-26
+
+### Added
+- Interface added for wheat types.
+
 ## [0.0.9] - 2025-05-25
 
 ### Added
