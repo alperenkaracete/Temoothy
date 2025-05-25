@@ -190,6 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 215325766}
+  - component: {fileID: 215325768}
   - component: {fileID: 215325767}
   m_Layer: 0
   m_Name: GoldWheat
@@ -207,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 215325765}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.021, y: 0.5, z: 0}
+  m_LocalPosition: {x: 4.158, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -235,6 +236,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7553191, y: 1.0148091, z: 0.20172942}
   m_Center: {x: -0.24932408, y: -0.18307084, z: -0.0016159415}
+--- !u!114 &215325768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215325765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbfff68b4a292e641b3b2f1454d1abdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 336459007}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +587,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a07b060b5f91354e9f7e141ce24c4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collectBrownWheat: {fileID: 0}
+  _collectGreenWheat: {fileID: 0}
+  _collectGoldenWheat: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1027,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 796623214}
+  - component: {fileID: 796623216}
   - component: {fileID: 796623215}
   m_Layer: 0
   m_Name: 'BrownWheat '
@@ -1055,6 +1073,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7596866, y: 1.0103827, z: 0.20172942}
   m_Center: {x: -0.7087744, y: -0.18306088, z: -0.0016159415}
+--- !u!114 &796623216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796623213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 422bd631e9b72154689307e4dd99a19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 336459007}
 --- !u!1 &799473262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1221546760}
+  - component: {fileID: 1221546762}
   - component: {fileID: 1221546761}
   m_Layer: 0
   m_Name: 'GreenWheat '
@@ -1653,7 +1685,7 @@ Transform:
   m_GameObject: {fileID: 1221546759}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.004, y: 0.5, z: 0}
+  m_LocalPosition: {x: 1.181, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1679,8 +1711,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7753117, y: 1.0149666, z: 1}
-  m_Center: {x: 0.7232169, y: -0.18708223, z: 0}
+  m_Size: {x: 0.7753117, y: 1.0149666, z: 0.19859806}
+  m_Center: {x: 0.7232169, y: -0.18708223, z: 0.006212458}
+--- !u!114 &1221546762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221546759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478b4c47b2d4a4540b2ee59c25abc072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 336459007}
 --- !u!1 &1246206018
 GameObject:
   m_ObjectHideFlags: 0

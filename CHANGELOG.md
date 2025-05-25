@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.9] - 2025-05-25
+
+### Added
+- Converted wheat types into collectible items.
+- Player can now collect 3 types of wheat.
+- Brown Wheat decreases the player's movement speed.
+- Gold Wheat increases the player's movement speed.
+- Green Wheat increases the player's jump speed.
+
+### Modified
+- Updated `PlayerController` and `PlayerInteractionController` to apply wheat effects.
+
 ## [0.0.8] - 2025-05-23
 
 ### Added

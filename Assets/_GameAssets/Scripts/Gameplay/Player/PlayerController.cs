@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _movementDirection;
     private StateController _currentState;
     private bool isSliding = false;
+    private float _startingMovementSpeed, _startingSlideSpeed, _startingJumpSpeed;
 
     private float _horizantolInput, _verticalInput;
 
@@ -42,6 +43,9 @@ public class PlayerController : MonoBehaviour
         _currentState = GetComponent<StateController>();
         _rigidBody.freezeRotation = true;
         _currentSpeed = _movementSpeed;
+        _startingMovementSpeed = _movementSpeed;
+        _startingSlideSpeed = _slideSpeed;
+        _startingJumpSpeed = _jumpSpeed;
 
     }
 
@@ -153,4 +157,33 @@ public class PlayerController : MonoBehaviour
         return _currentSpeed;
     }
 
+    public void ApplyGoldWheatEffects(float movementSpeedBuff,float duration)
+    {
+        _movementSpeed += movementSpeedBuff;
+        _slideSpeed += movementSpeedBuff;
+        Invoke(nameof(ResetWheatEffect), duration);
+    }
+    
+    public void ApplyBrownWheatEffects(float movementSpeedDebuff, float duration)
+    {
+        _slideSpeed -= movementSpeedDebuff;
+        _movementSpeed -= movementSpeedDebuff;
+        Invoke(nameof(ResetWheatEffect), duration);       
+    }
+
+    public void ApplyGreenWheatEffects(float jumpSpeedMultiplier, float duration)
+    {
+        _jumpSpeed *= jumpSpeedMultiplier;
+        Invoke(nameof(ResetWheatEffect), duration);
+    }
+
+    void ResetWheatEffect()
+    {
+        if (_movementSpeed != _startingMovementSpeed)
+            _movementSpeed = _startingMovementSpeed;
+        if (_slideSpeed != _startingSlideSpeed)
+            _slideSpeed = _startingSlideSpeed;
+        else if (_jumpSpeed != _startingJumpSpeed)
+            _jumpSpeed = _startingJumpSpeed;
+    }
 }
