@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1] - 2025-05-26
+
+### Added
+- Added `WheatDesignSO` ScriptableObject to manage wheat configuration data.
+
+### Modified
+- Modified `BrownWheatCollectible`, `GoldWheatCollectible`, and `GreenWheatCollectible` to utilize `WheatDesignSO` for improved modularity and performance.
+
 ## [0.1.0] - 2025-05-26
 
 ### Added

@@ -249,6 +249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerController: {fileID: 336459007}
+  _duration: 10
+  _movementSpeedBuff: 10
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,9 +589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a07b060b5f91354e9f7e141ce24c4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectBrownWheat: {fileID: 0}
-  _collectGreenWheat: {fileID: 0}
-  _collectGoldenWheat: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerController: {fileID: 336459007}
+  _duration: 10
+  _movementSpeedDebuff: 20
 --- !u!1 &799473262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerController: {fileID: 336459007}
+  _duration: 10
+  _jumpSpeedMultiplier: 1.7
 --- !u!1 &1246206018
 GameObject:
   m_ObjectHideFlags: 0

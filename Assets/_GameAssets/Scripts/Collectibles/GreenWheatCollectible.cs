@@ -4,12 +4,11 @@ public class GreenWheatCollectible : MonoBehaviour,ICollectible
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private PlayerController _playerController;
-    [SerializeField] private float _duration = 10;
-   [SerializeField] private float _jumpSpeedMultiplier = 1.7f;
+    [SerializeField] private WheatDesignSO _greenWheatDesignSO; 
 
     public void Collect()
     {
-        _playerController.ApplyGreenWheatEffects(_jumpSpeedMultiplier, _duration);
+        _playerController.ApplyGreenWheatEffects(_greenWheatDesignSO.IncreaseDecreaseAmount, _greenWheatDesignSO.Duration);
         Destroy(gameObject);
     }
 }
