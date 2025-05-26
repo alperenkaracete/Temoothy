@@ -53,8 +53,8 @@ public class PlayerController : MonoBehaviour
     {
         SetInputs();
         SetState();
-        SetMovementSpeed();
         LimitPlayerSpeed();
+        SetMovementSpeed();
     }
 
     private void SetMovementSpeed()
@@ -157,18 +157,18 @@ public class PlayerController : MonoBehaviour
         return _currentSpeed;
     }
 
-    public void ApplyGoldWheatEffects(float movementSpeedBuff,float duration)
+    public void ApplyGoldWheatEffects(float movementSpeedBuff, float duration)
     {
         _movementSpeed += movementSpeedBuff;
         _slideSpeed += movementSpeedBuff;
         Invoke(nameof(ResetWheatEffect), duration);
     }
-    
+
     public void ApplyBrownWheatEffects(float movementSpeedDebuff, float duration)
     {
         _slideSpeed -= movementSpeedDebuff;
         _movementSpeed -= movementSpeedDebuff;
-        Invoke(nameof(ResetWheatEffect), duration);       
+        Invoke(nameof(ResetWheatEffect), duration);
     }
 
     public void ApplyGreenWheatEffects(float jumpSpeedMultiplier, float duration)
@@ -185,5 +185,11 @@ public class PlayerController : MonoBehaviour
             _slideSpeed = _startingSlideSpeed;
         else if (_jumpSpeed != _startingJumpSpeed)
             _jumpSpeed = _startingJumpSpeed;
+    }
+
+    public Rigidbody GetPlayerRigidBody()
+    {
+
+        return _rigidBody;
     }
 }

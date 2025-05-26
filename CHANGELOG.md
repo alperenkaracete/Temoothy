@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.2] - 2025-05-26
+
+### Added
+- Added new `Spatula`. Spatula gives a jump boost to player.
+- Added new animations for Spatula.
+
+### Modified
+- Modified `BrownWheatCollectible`, `GoldWheatCollectible`, and `GreenWheatCollectible` to utilize `WheatDesignSO` for improved modularity and performance.
+
 ## [0.1.1] - 2025-05-26
 
 ### Added
