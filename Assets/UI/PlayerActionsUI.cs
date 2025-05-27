@@ -35,7 +35,6 @@ public class PlayerActionsUI : MonoBehaviour
         {
             case PlayerState.Idle:
             case PlayerState.Move:
-                Debug.Log("helo");
                 SetStateUserInterfaces(_playerWalkingActiveSprite, _playerSlidingPassiveSprite, _playerWalkingTransform, _playerSlidingTransform);
                 break;
 

@@ -1,10 +1,16 @@
 # Changelog
 
-## [0.1.2] - 2025-05-26
+## [0.1.4] - 2025-05-27
 
 ### Added
--Added UI elements for player actions, buffs/debuffs, timer, and player health.
--Players can now clearly see their current state and active power-ups.
+- Added player health system.
+- Added health lost/gain animations.
+
+## [0.1.3] - 2025-05-27
+
+### Added
+- Added UI elements for player actions, buffs/debuffs, timer, and player health.
+- Players can now clearly see their current state and active power-ups.
 
 ### Fixed
 - Fixed an issue where the player could not jump at maximum speed.
