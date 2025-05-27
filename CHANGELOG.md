@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.4] - 2025-05-28
+
+### Added
+- Added timer rotation animation.
+- Added timer system and format.
+
 ## [0.1.4] - 2025-05-27
 
 ### Added
