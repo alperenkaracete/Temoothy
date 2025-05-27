@@ -3,6 +3,16 @@
 ## [0.1.2] - 2025-05-26
 
 ### Added
+-Added UI elements for player actions, buffs/debuffs, timer, and player health.
+-Players can now clearly see their current state and active power-ups.
+
+### Fixed
+- Fixed an issue where the player could not jump at maximum speed.
+- Improved jump physics: the player now falls more quickly and naturally after jumping.
+
+## [0.1.2] - 2025-05-26
+
+### Added
 - Added new `Spatula`. Spatula gives a jump boost to player.
 - Added new animations for Spatula.
 

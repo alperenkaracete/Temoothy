@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action<PlayerState> OnPlayerStateChanged;
+    public event Action<string,float> OnPlayerCollectWheat;
     private Rigidbody _rigidBody;
 
     [Header("References")]
@@ -27,9 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _slideSpeed;
     [SerializeField] private KeyCode _slideActivateKey;
 
-
-
-
     private Vector3 _movementDirection;
     private StateController _currentState;
     private bool isSliding = false;
@@ -41,20 +40,25 @@ public class PlayerController : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody>();
         _currentState = GetComponent<StateController>();
+        _currentState.SetPlayerState(PlayerState.Move);
         _rigidBody.freezeRotation = true;
         _currentSpeed = _movementSpeed;
         _startingMovementSpeed = _movementSpeed;
         _startingSlideSpeed = _slideSpeed;
         _startingJumpSpeed = _jumpSpeed;
+    }
 
+    void Start()
+    {
+        OnPlayerStateChanged?.Invoke(PlayerState.Idle);
     }
 
     void Update()
     {
         SetInputs();
         SetState();
-        LimitPlayerSpeed();
         SetMovementSpeed();
+        LimitPlayerSpeed();
     }
 
     private void SetMovementSpeed()
@@ -101,7 +105,6 @@ public class PlayerController : MonoBehaviour
         PlayerState newState = _currentState.GetPlayerState();
         Vector3 movementDirectionNormalized = _movementDirection.normalized;
         bool isGrounded = IsGrounded();
-
         if (movementDirectionNormalized != Vector3.zero && isGrounded && !isSliding)
             newState = PlayerState.Move;
         else if (movementDirectionNormalized != Vector3.zero && isGrounded && isSliding)
@@ -117,6 +120,7 @@ public class PlayerController : MonoBehaviour
         {
             _currentState.SetPlayerState(newState);
             _state = newState;
+            OnPlayerStateChanged?.Invoke(newState);
         }
     }
 
@@ -124,7 +128,8 @@ public class PlayerController : MonoBehaviour
     {
         _movementDirection = _orientationTransform.forward * _verticalInput + _orientationTransform.right * _horizantolInput;
         //Eğer burada normalized değil de sadece movement direction kullanılırsa, mesela çapraz gidildiği zaman pisagor alarak daha hızlı ilerler.Bu yüzden normalized alıyoruz ki sağa,sola ve yukarı,aşağı gittiği hıza eşit bir şekilde çapraz da gitsin.
-        _rigidBody.AddForce(_movementDirection.normalized * _currentSpeed, ForceMode.Force);
+        float airMultiplier = IsGrounded() ? 1f : 1f;
+        _rigidBody.AddForce(_movementDirection.normalized * _currentSpeed * airMultiplier, ForceMode.Force);
     }
 
     void LimitPlayerSpeed()
@@ -135,7 +140,7 @@ public class PlayerController : MonoBehaviour
         {
 
             Vector3 limitedVelocity = flatVelocity.normalized * _movementSpeed;
-            _rigidBody.linearVelocity = new Vector3(limitedVelocity.x, 0f, limitedVelocity.z);
+            _rigidBody.linearVelocity = new Vector3(limitedVelocity.x, _rigidBody.linearVelocity.y, limitedVelocity.z);
         }
     }
 
@@ -161,6 +166,7 @@ public class PlayerController : MonoBehaviour
     {
         _movementSpeed += movementSpeedBuff;
         _slideSpeed += movementSpeedBuff;
+        OnPlayerCollectWheat?.Invoke(WheatTypes.GOLD_WHEAT,duration);
         Invoke(nameof(ResetWheatEffect), duration);
     }
 
@@ -168,12 +174,14 @@ public class PlayerController : MonoBehaviour
     {
         _slideSpeed -= movementSpeedDebuff;
         _movementSpeed -= movementSpeedDebuff;
+        OnPlayerCollectWheat?.Invoke(WheatTypes.BROWN_WHEAT,duration);
         Invoke(nameof(ResetWheatEffect), duration);
     }
 
     public void ApplyGreenWheatEffects(float jumpSpeedMultiplier, float duration)
     {
         _jumpSpeed *= jumpSpeedMultiplier;
+        OnPlayerCollectWheat?.Invoke(WheatTypes.GREEN_WHEAT,duration);
         Invoke(nameof(ResetWheatEffect), duration);
     }
 
