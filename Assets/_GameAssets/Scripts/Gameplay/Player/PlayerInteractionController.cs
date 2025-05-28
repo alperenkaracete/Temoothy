@@ -11,18 +11,21 @@ public class PlayerInteractionController : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<ICollectible>(out var collectible))
+        if (other.TryGetComponent<ICollectible>(out var wheatCollectible))
         {
-            collectible.Collect();
+            wheatCollectible.Collect();
+        }
+        if (other.TryGetComponent<EggCollectible>(out var eggCollectible))
+        {
+            eggCollectible.Collect();
         }
     }
-
     private void OnCollisionEnter(Collision other)
     {
 
-        if (other.gameObject.TryGetComponent<IBoostable>(out var collectible))
+        if (other.gameObject.TryGetComponent<IBoostable>(out var wheatCollectible))
         {
-            collectible.Boost(_playerController);
+            wheatCollectible.Boost(_playerController);
         }
     }
 }

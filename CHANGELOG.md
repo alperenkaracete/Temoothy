@@ -1,6 +1,14 @@
 # Changelog
 
-## [0.1.4] - 2025-05-28
+## [0.1.6] - 2025-05-28
+
+### Added
+- Added new 5 type of eggs.
+- Added egg counter system to keep track of collceted eggs.
+- Added egg counter UI.
+- Added win condition when player collects all eggs.
+
+## [0.1.5] - 2025-05-28
 
 ### Added
 - Added timer rotation animation.

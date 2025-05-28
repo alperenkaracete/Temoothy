@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public event Action<PlayerState> OnPlayerStateChanged;
-    public event Action<string,float> OnPlayerCollectWheat;
+    public event Action<string, float> OnPlayerCollectWheat;
     private Rigidbody _rigidBody;
 
     [Header("References")]
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
     {
         _movementSpeed += movementSpeedBuff;
         _slideSpeed += movementSpeedBuff;
-        OnPlayerCollectWheat?.Invoke(WheatTypes.GOLD_WHEAT,duration);
+        OnPlayerCollectWheat?.Invoke(WheatTypes.GOLD_WHEAT, duration);
         Invoke(nameof(ResetWheatEffect), duration);
     }
 
@@ -182,14 +182,14 @@ public class PlayerController : MonoBehaviour
     {
         _slideSpeed -= movementSpeedDebuff;
         _movementSpeed -= movementSpeedDebuff;
-        OnPlayerCollectWheat?.Invoke(WheatTypes.BROWN_WHEAT,duration);
+        OnPlayerCollectWheat?.Invoke(WheatTypes.BROWN_WHEAT, duration);
         Invoke(nameof(ResetWheatEffect), duration);
     }
 
     public void ApplyGreenWheatEffects(float jumpSpeedMultiplier, float duration)
     {
         _jumpSpeed *= jumpSpeedMultiplier;
-        OnPlayerCollectWheat?.Invoke(WheatTypes.GREEN_WHEAT,duration);
+        OnPlayerCollectWheat?.Invoke(WheatTypes.GREEN_WHEAT, duration);
         Invoke(nameof(ResetWheatEffect), duration);
     }
 
