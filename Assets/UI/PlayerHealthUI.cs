@@ -38,11 +38,14 @@ public class PlayerHealthUI : MonoBehaviour
         }
     }
 
-    public void OnPlayerInstantDead()
+    public void OnPlayerInstantDead(GameState currentGameState)
     {
-        for (int i = 0; i < _playerHealths.Length; i++)
+        if (currentGameState == GameState.GameOver)
         {
-            AnimateHealthChange(i, _playerHealthInactive);
+            for (int i = 0; i < _playerHealths.Length; i++)
+            {
+                AnimateHealthChange(i, _playerHealthInactive);
+            }
         }
     }
 

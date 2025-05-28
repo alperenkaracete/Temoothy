@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public event Action<int> OnEggCollected;
     public event Action<GameState> OnGameStateChanged;
+    public event Action<int,GameState> OnGameOver;
     public static GameManager Instance { get; private set; }
     private GameState _currentGameState;
 
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Game Win!");
             ChangeGameState(GameState.GameOver);
+            OnGameOver.Invoke(_totalCollectedEggCount,GameState.GameOver);
         }
     }
 

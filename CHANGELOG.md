@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8] - 2025-05-28
+
+### Added
+- Added win and lose popup windows.
+- Player win when collect five eggs.
+- Player lost when lost all lifes. 
+
 ## [0.1.7] - 2025-05-28
 
 ### Added

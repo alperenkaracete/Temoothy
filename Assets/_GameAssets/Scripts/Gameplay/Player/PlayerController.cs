@@ -58,7 +58,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        IsGamePaused();
+        if (IsGamePaused())
+            return;
         SetInputs();
         SetState();
         SetMovementSpeed();
@@ -102,6 +103,11 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(_moveActivateKey))
         {
             isSliding = false;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            _playerHealthManager.Damage(1);
         }
     }
 
@@ -211,11 +217,12 @@ public class PlayerController : MonoBehaviour
         return _rigidBody;
     }
 
-    private void IsGamePaused()
+    private bool IsGamePaused()
     {
         if (GameManager.Instance.CurrentGameState != GameState.Resume && GameManager.Instance.CurrentGameState != GameState.Play)
         {
-            return;
+            return true;
         }
+        return false;
     }
 }

@@ -29,6 +29,7 @@ public class TimerUI : MonoBehaviour
     {
         switch (gameState)
         {
+            case GameState.GameOver:
             case GameState.Pause:
                 PauseTimer();
                 break;
@@ -70,7 +71,7 @@ public class TimerUI : MonoBehaviour
         CancelInvoke(nameof(UpdateTimerUI));
         _rotationTween.Pause();
     }
-     
+
     private void ResumeTimer()
     {
         if (!_isTimerRunning)

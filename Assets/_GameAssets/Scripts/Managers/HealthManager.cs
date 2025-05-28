@@ -1,11 +1,13 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
     public event Action<int> OnPlayerGetsDamage;
     public event Action<int> OnPlayerGetsLife;
-    public event Action OnPlayerInstantDead;
+    public event Action<GameState> OnPlayerInstantDead;
+    public event Action<GameState> OnPlayerDead;
 
     [SerializeField] private int _maxHealth;
     private int _currentHealth;
@@ -21,10 +23,11 @@ public class HealthManager : MonoBehaviour
             _currentHealth -= damage;
             OnPlayerGetsDamage?.Invoke(_currentHealth);
         }
-        
+
         if (_currentHealth == 0)
         {
-            //Player Dead;
+            GameManager.Instance.ChangeGameState(GameState.GameOver);
+            OnPlayerDead?.Invoke(GameState.GameOver);
         }
 
     }
@@ -40,7 +43,9 @@ public class HealthManager : MonoBehaviour
 
     public void InstantDead()
     {
-        OnPlayerInstantDead?.Invoke();
+        GameManager.Instance.ChangeGameState(GameState.GameOver);
+        OnPlayerInstantDead?.Invoke(GameState.GameOver);
+        OnPlayerDead?.Invoke(GameState.GameOver);
     }
 
     public int PlayerCurrentHealth => _currentHealth;
