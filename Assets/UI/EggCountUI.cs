@@ -20,7 +20,7 @@ public class EggCountUI : MonoBehaviour
 
     void Awake()
     {
-        _eggCounterRectTransform = _eggCount.gameObject.GetComponent<RectTransform>();
+        _eggCounterRectTransform = _eggCount.GetComponent<RectTransform>();
     }
     void Start()
     {

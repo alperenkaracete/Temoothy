@@ -13,6 +13,10 @@ public class ThirdPersonCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.CurrentGameState != GameState.Resume && GameManager.Instance.CurrentGameState != GameState.Play)
+        {
+            return;
+        }
         Vector3 viewDirection = _playerTransform.position - new Vector3(transform.position.x, _playerTransform.position.y, transform.position.z);
 
         _orientationTransform.forward = viewDirection.normalized;

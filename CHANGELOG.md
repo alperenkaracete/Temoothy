@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.7] - 2025-05-28
+
+### Added
+- Added settings button.
+- Player can pause the game by pressing settings button. 
+
 ## [0.1.6] - 2025-05-28
 
 ### Added

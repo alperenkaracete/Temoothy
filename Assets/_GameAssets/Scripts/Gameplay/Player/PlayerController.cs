@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        IsGamePaused();
         SetInputs();
         SetState();
         SetMovementSpeed();
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        IsGamePaused();
         SetMovement();
     }
 
@@ -207,5 +209,13 @@ public class PlayerController : MonoBehaviour
     {
 
         return _rigidBody;
+    }
+
+    private void IsGamePaused()
+    {
+        if (GameManager.Instance.CurrentGameState != GameState.Resume && GameManager.Instance.CurrentGameState != GameState.Play)
+        {
+            return;
+        }
     }
 }
