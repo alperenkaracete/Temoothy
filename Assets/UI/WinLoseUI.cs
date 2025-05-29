@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System;
 
 public class WinLoseUI : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class WinLoseUI : MonoBehaviour
     private RectTransform _losePopupRectTransform;
     private RectTransform _winPopupRectTransform;
 
+    public event Action<string> OnGameWin;
+    public event Action<string> OnGameLose;
     void Awake()
     {
         _blackBackgroundImage = _blackBacgroundGameobject.GetComponent<Image>();
@@ -42,7 +45,7 @@ public class WinLoseUI : MonoBehaviour
         {
             _blackBacgroundGameobject.SetActive(true);
             _losePopupGameobject.SetActive(true);
-            _losePopupTimer.text = _currentTimer.text;
+            OnGameLose?.Invoke(_currentTimer.text);
             _blackBackgroundImage.DOFade(0.8f, _animationDuration).SetEase(Ease.Linear);
             _losePopupRectTransform.DOScale(1.5f, _animationDuration).SetEase(Ease.OutBack);
         }
@@ -56,7 +59,7 @@ public class WinLoseUI : MonoBehaviour
         {
             _blackBacgroundGameobject.SetActive(true);
             _winPopupGameobject.SetActive(true);
-            _winPopupTimer.text = _currentTimer.text;
+            OnGameWin?.Invoke(_currentTimer.text);
             _blackBackgroundImage.DOFade(0.8f, _animationDuration).SetEase(Ease.Linear);
             _winPopupRectTransform.DOScale(1.5f, _animationDuration).SetEase(Ease.OutBack);
         }

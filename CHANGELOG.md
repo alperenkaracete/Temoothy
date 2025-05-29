@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.9] - 2025-05-28
+
+### Added
+- Added restart system on win/lose screens.
+
 ## [0.1.8] - 2025-05-28
 
 ### Added

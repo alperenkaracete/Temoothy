@@ -17,12 +17,12 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); // Sahnedeki fazla GameManager'ı sil
+            Destroy(gameObject);
             return;
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Sahneler arasında yok olmasın (opsiyonel)
+        //DontDestroyOnLoad(gameObject); // Sahneler arasında yok olmasın (opsiyonel)
     }
 
     void OnEnable()
@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
             OnGameOver.Invoke(_totalCollectedEggCount,GameState.GameOver);
         }
     }
-
     public int TotalCollectedEggCount => _totalCollectedEggCount;
     public int MaxEggCount => maxEggCount;
     public GameState CurrentGameState => _currentGameState;
