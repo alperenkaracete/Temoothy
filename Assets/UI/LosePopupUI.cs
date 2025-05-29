@@ -23,6 +23,7 @@ public class LosePopupUI : MonoBehaviour
         _playAgainButton.onClick.AddListener(ReplayLevel);
     }
     private void ReplayLevel() {
+        GameManager.Instance.ResetInstance();
         SceneManager.LoadScene(Others.GAME_SCENE);
     }
     private void OnGameLose(string currentClock)

@@ -1,11 +1,17 @@
 # Changelog
 
-## [0.1.9] - 2025-05-28
+## [0.2.0] - 2025-05-29
+
+### Added
+- Added level environment
+- Designed new level
+
+## [0.1.9] - 2025-05-29
 
 ### Added
 - Added restart system on win/lose screens.
 
-## [0.1.8] - 2025-05-28
+## [0.1.8] - 2025-05-29
 
 ### Added
 - Added win and lose popup windows.

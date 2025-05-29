@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
             OnGameOver.Invoke(_totalCollectedEggCount,GameState.GameOver);
         }
     }
+    public void ResetInstance()
+    {
+        ChangeGameState(GameState.Play);
+        _totalCollectedEggCount = 0;
+    }
     public int TotalCollectedEggCount => _totalCollectedEggCount;
     public int MaxEggCount => maxEggCount;
     public GameState CurrentGameState => _currentGameState;

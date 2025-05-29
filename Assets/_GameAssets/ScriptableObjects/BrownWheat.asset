@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff921314fae13fa448941305944bda78, type: 3}
   m_Name: BrownWheat
   m_EditorClassIdentifier: 
-  _increaseDecreaseAmount: 20
+  _increaseDecreaseAmount: 5
   _duration: 5

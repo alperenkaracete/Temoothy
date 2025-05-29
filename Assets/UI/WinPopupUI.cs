@@ -28,6 +28,7 @@ public class WinPopupUI : MonoBehaviour
         _winPopupTimer.text = currentClock;
     }
     private void ReplayLevel() {
+        GameManager.Instance.ResetInstance();
         SceneManager.LoadScene(Others.GAME_SCENE);
     }
 }
