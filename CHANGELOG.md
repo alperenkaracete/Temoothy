@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1] - 2025-05-29
+
+### Added
+- Added fire damageables.
+- When player land on a fire, gets 1 damage.
+
 ## [0.2.0] - 2025-05-29
 
 ### Added

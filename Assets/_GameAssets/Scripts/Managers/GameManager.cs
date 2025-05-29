@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,14 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Instance = this;
-        //DontDestroyOnLoad(gameObject); // Sahneler arasında yok olmasın (opsiyonel)
     }
 
     void OnEnable()
@@ -51,6 +45,7 @@ public class GameManager : MonoBehaviour
     }
     public void ResetInstance()
     {
+        DOTween.KillAll();
         ChangeGameState(GameState.Play);
         _totalCollectedEggCount = 0;
     }

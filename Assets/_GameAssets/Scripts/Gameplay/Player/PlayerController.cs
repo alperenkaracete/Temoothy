@@ -29,9 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _slideSpeed;
     [SerializeField] private KeyCode _slideActivateKey;
 
-    [Header("Player")]
-    [SerializeField] private HealthManager _playerHealthManager;
-
     private Vector3 _movementDirection;
     private StateController _currentState;
     private bool isSliding = false;
@@ -107,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.T))
         {
-            _playerHealthManager.Damage(1);
+            HealthManager.Instance.Damage(1);
         }
     }
 
@@ -134,9 +131,9 @@ public class PlayerController : MonoBehaviour
             _state = newState;
             OnPlayerStateChanged?.Invoke(newState);
             /*if (_currentState.GetPlayerState() == PlayerState.Jump) //HealthManagerControl
-                _playerHealthManager.Damage(1);
+                HealthManager.Instance.Damage(1);
             else if (_currentState.GetPlayerState() == PlayerState.Slide)
-                _playerHealthManager.InstantDead();    */
+                HealthManager.Instance.InstantDead();    */
         }
     }
 

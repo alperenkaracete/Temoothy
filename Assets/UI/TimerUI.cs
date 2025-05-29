@@ -43,7 +43,7 @@ public class TimerUI : MonoBehaviour
     private void PlayRotationAnimation()
     {
         Vector3 _rotateDirection = new Vector3(0f, 0f, -360f);
-        _rotationTween = _timerRotatableTransform.DORotate(_rotateDirection, _timer, RotateMode.FastBeyond360)
+        _rotationTween = _timerRotatableTransform?.DORotate(_rotateDirection, _timer, RotateMode.FastBeyond360)
             .SetLoops(-1, LoopType.Restart)
             .SetEase(_rotationEase);
     }

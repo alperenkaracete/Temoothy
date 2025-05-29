@@ -10,7 +10,6 @@ public class WinLoseUI : MonoBehaviour
     [SerializeField] private GameObject _winPopupGameobject;
     [SerializeField] private GameObject _losePopupGameobject;
     [SerializeField] private GameObject _blackBacgroundGameobject;
-    [SerializeField] private HealthManager _healthManager;
     [SerializeField] private TextMeshProUGUI _currentTimer;
     [SerializeField] private TextMeshProUGUI _winPopupTimer;
     [SerializeField] private TextMeshProUGUI _losePopupTimer;
@@ -33,7 +32,7 @@ public class WinLoseUI : MonoBehaviour
     void Start()
     {
         GameManager.Instance.OnGameOver += OnGameOver;
-        _healthManager.OnPlayerDead += OnPlayerDead;
+        HealthManager.Instance.OnPlayerDead += OnPlayerDead;
 
         _winPopupGameobject.transform.localScale = Vector3.zero;
         _losePopupGameobject.transform.localScale = Vector3.zero;
@@ -41,13 +40,13 @@ public class WinLoseUI : MonoBehaviour
 
     private void OnPlayerDead(GameState currentGameState)
     {
-        if (_healthManager.PlayerCurrentHealth <= 0 && currentGameState == GameState.GameOver)
+        if (HealthManager.Instance.PlayerCurrentHealth <= 0 && currentGameState == GameState.GameOver)
         {
             _blackBacgroundGameobject.SetActive(true);
             _losePopupGameobject.SetActive(true);
             OnGameLose?.Invoke(_currentTimer.text);
-            _blackBackgroundImage.DOFade(0.8f, _animationDuration).SetEase(Ease.Linear);
-            _losePopupRectTransform.DOScale(1.5f, _animationDuration).SetEase(Ease.OutBack);
+            _blackBackgroundImage?.DOFade(0.8f, _animationDuration)?.SetEase(Ease.Linear);
+            _losePopupRectTransform?.DOScale(1.5f, _animationDuration)?.SetEase(Ease.OutBack);
         }
     }
 
@@ -60,8 +59,8 @@ public class WinLoseUI : MonoBehaviour
             _blackBacgroundGameobject.SetActive(true);
             _winPopupGameobject.SetActive(true);
             OnGameWin?.Invoke(_currentTimer.text);
-            _blackBackgroundImage.DOFade(0.8f, _animationDuration).SetEase(Ease.Linear);
-            _winPopupRectTransform.DOScale(1.5f, _animationDuration).SetEase(Ease.OutBack);
+            _blackBackgroundImage?.DOFade(0.8f, _animationDuration)?.SetEase(Ease.Linear);
+            _winPopupRectTransform?.DOScale(1.5f, _animationDuration)?.SetEase(Ease.OutBack);
         }
     }
 }

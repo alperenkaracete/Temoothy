@@ -6,7 +6,6 @@ using DG.Tweening;
 public class PlayerHealthUI : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private HealthManager _healthManager;
     [SerializeField] private Image[] _playerHealths;
     [SerializeField] private Sprite _playerHealthActive;
     [SerializeField] private Sprite _playerHealthInactive;
@@ -17,9 +16,9 @@ public class PlayerHealthUI : MonoBehaviour
 
     void Start()
     {
-        _healthManager.OnPlayerGetsDamage += OnPlayerGetsDamage;
-        _healthManager.OnPlayerGetsLife += OnPlayerGetsLife;
-        _healthManager.OnPlayerInstantDead += OnPlayerInstantDead;
+        HealthManager.Instance.OnPlayerGetsDamage += OnPlayerGetsDamage;
+        HealthManager.Instance.OnPlayerGetsLife += OnPlayerGetsLife;
+        HealthManager.Instance.OnPlayerInstantDead += OnPlayerInstantDead;
     }
 
     private void OnPlayerGetsLife(int currentHealth)
@@ -49,16 +48,16 @@ public class PlayerHealthUI : MonoBehaviour
         }
     }
 
-    private void AnimateHealthChange(int index, Sprite targetSprite)
+    public void AnimateHealthChange(int index, Sprite targetSprite)
     {
         RectTransform healthTransform = _playerHealthTransforms[index];
 
-        healthTransform.DOScale(0f, _scaleDuration)
-            .SetEase(Ease.InBack)
+        healthTransform?.DOScale(0f, _scaleDuration)
+            ?.SetEase(Ease.InBack)
             .OnComplete(() =>
             {
                 _playerHealths[index].sprite = targetSprite;
-                healthTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack);
+                healthTransform?.DOScale(1f, _scaleDuration)?.SetEase(Ease.OutBack);
             });
     }
 

@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
+    public static HealthManager Instance { get; private set; }
     public event Action<int> OnPlayerGetsDamage;
     public event Action<int> OnPlayerGetsLife;
     public event Action<GameState> OnPlayerInstantDead;
     public event Action<GameState> OnPlayerDead;
 
+    [Header("References")]
+    [SerializeField] private PlayerHealthUI _playerHealthUI;
+
+    [Header("Settings")]
     [SerializeField] private int _maxHealth;
     private int _currentHealth;
+
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         _currentHealth = _maxHealth;
