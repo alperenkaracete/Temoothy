@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.2] - 2025-05-30
+
+### Added
+- Cat model added.
+- Cat movement added.
+
 ## [0.2.1] - 2025-05-29
 
 ### Added
