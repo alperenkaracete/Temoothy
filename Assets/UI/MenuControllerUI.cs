@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using MaskTransitions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,7 +21,7 @@ public class MenuControllerUI : MonoBehaviour
 
     void StartGame()
     {
-        SceneManager.LoadScene(Others.GAME_SCENE);
+        TransitionManager.Instance.LoadLevel(Others.GAME_SCENE);
     }
 
     void HowToPlay()

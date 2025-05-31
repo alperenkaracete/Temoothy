@@ -106,6 +106,11 @@ public class PlayerController : MonoBehaviour
         {
             HealthManager.Instance.Damage(1);
         }
+        else if (Input.GetKeyDown(KeyCode.Y))
+        {
+            GameManager.Instance.SetTotalCollectedEggCount(4);
+            GameManager.Instance.IncreaseTotalEggCount();
+        }        
     }
 
     void SetState()

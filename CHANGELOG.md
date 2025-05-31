@@ -1,12 +1,18 @@
 # Changelog
 
-## [0.2.4] - 2025-05-30
+## [0.2.5] - 2025-05-31
+
+### Added
+- Scene transitions polished
+- Smooth transition added
+
+## [0.2.4] - 2025-05-31
 
 ### Added
 - Main menu created
 - Button animations added
 
-## [0.2.3] - 2025-05-30
+## [0.2.3] - 2025-05-31
 
 ### Added
 - Cat animations added.

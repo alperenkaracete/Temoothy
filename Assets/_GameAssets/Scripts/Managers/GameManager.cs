@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
         _totalCollectedEggCount = 0;
     }
     public int TotalCollectedEggCount => _totalCollectedEggCount;
+    public void SetTotalCollectedEggCount(int eggCount)
+    {
+        _totalCollectedEggCount = eggCount;
+    }
     public int MaxEggCount => maxEggCount;
     public GameState CurrentGameState => _currentGameState;
 }
