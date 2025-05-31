@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.4] - 2025-05-30
+
+### Added
+- Main menu created
+- Button animations added
+
 ## [0.2.3] - 2025-05-30
 
 ### Added
