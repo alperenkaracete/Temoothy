@@ -222,4 +222,20 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
+    public bool CanCatChase()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, _playerHeight * 0.5f + 0.2f, _groundLayer))
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer(Others.FLOOR_LAYER))
+            {
+                return true;
+            }
+            else if (hit.collider.gameObject.layer == LayerMask.NameToLayer(Others.GROUND_LAYER))
+            {
+                return false;
+            }
+        }
+        return false;
+    }
 }

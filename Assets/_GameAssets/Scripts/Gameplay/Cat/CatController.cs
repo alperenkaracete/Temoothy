@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using TMPro;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.AI;
 
 public class CatController : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private PlayerController _playerController;
+
     [Header("Movement")]
     [SerializeField] private float _catMovementSpeed = 5f;
     [SerializeField] private float _catChaseSpeed = 7f;
@@ -13,12 +17,17 @@ public class CatController : MonoBehaviour
     [SerializeField] private float _waitTime = 2f;
     [SerializeField] private float _patrolRadius = 10f;
     [SerializeField] private int _maxDestinationAttemps = 50;
+    [SerializeField] private float _chaseDistanceThreshold = 1.5f;
+    [SerializeField] private float _chaseDistance = 2f;
 
     private NavMeshAgent _catAgent;
     private CatStateController _catStateController;
     private bool _isWaiting;
+    private bool _isChasing = true;
     private float _timer;
     private Vector3 _initialPosition;
+
+    public event Action OnCatAttackPlayer;
 
     void Awake()
     {
@@ -34,14 +43,37 @@ public class CatController : MonoBehaviour
 
     void Update()
     {
-        SetPatrolMovement();
+        if (_playerController.CanCatChase())
+            SetChaseMovement();
+
+        else if (!_playerController.CanCatChase())
+            SetPatrolMovement();
+
+            Debug.Log(_catStateController.GetCatState());
+    }
+
+    private void SetChaseMovement()
+    {
+        _isChasing = true;
+        Vector3 directionToPlayer = (_playerController.transform.position - transform.position).normalized;
+        Vector3 offsetPosition = _playerController.transform.position - directionToPlayer * _chaseDistanceThreshold;
+        _catAgent.SetDestination(offsetPosition);
+        _catAgent.speed = _catChaseSpeed;
+        _catStateController.SetCatState(CatState.Running);
+
+        if (Vector3.Distance(transform.position, _playerController.transform.position) <= _chaseDistance && _isChasing)
+        {
+            _catStateController.SetCatState(CatState.Attacking);
+            OnCatAttackPlayer.Invoke();
+            _isChasing = false;
+        }
     }
 
     private void SetPatrolMovement()
     {
         _catAgent.speed = _catMovementSpeed;
 
-        if (_catAgent.pathPending && _catAgent.remainingDistance <= _catAgent.stoppingDistance)
+        if (!_catAgent.pathPending && _catAgent.remainingDistance <= _catAgent.stoppingDistance)
         {
             if (!_isWaiting)
             {

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3] - 2025-05-30
+
+### Added
+- Cat animations added.
+- Cat kills player instantly
+- Game over when cat attacks to player
+
 ## [0.2.2] - 2025-05-30
 
 ### Added

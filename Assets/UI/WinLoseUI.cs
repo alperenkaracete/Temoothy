@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using System;
+using System.Collections;
 
 public class WinLoseUI : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class WinLoseUI : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] float _animationDuration;
+
+    [Header("References")]
+    [SerializeField] private CatController _catController;
 
     private Image _blackBackgroundImage;
     private RectTransform _losePopupRectTransform;
@@ -33,9 +37,17 @@ public class WinLoseUI : MonoBehaviour
     {
         GameManager.Instance.OnGameOver += OnGameOver;
         HealthManager.Instance.OnPlayerDead += OnPlayerDead;
+        _catController.OnCatAttackPlayer += OnCatAttackPlayer;
 
         _winPopupGameobject.transform.localScale = Vector3.zero;
         _losePopupGameobject.transform.localScale = Vector3.zero;
+    }
+
+    private void OnCatAttackPlayer()
+    {
+        HealthManager.Instance.InstantDead();
+        float waitSec = 0.5f;
+        StartCoroutine(OnPlayerDead(GameState.GameOver,waitSec));
     }
 
     private void OnPlayerDead(GameState currentGameState)
@@ -50,7 +62,7 @@ public class WinLoseUI : MonoBehaviour
         }
     }
 
-    private void OnGameOver(int collectedEggs,GameState currentState)
+    private void OnGameOver(int collectedEggs, GameState currentState)
     {
         int maxEggs = GameManager.Instance.MaxEggCount;
 
@@ -62,5 +74,14 @@ public class WinLoseUI : MonoBehaviour
             _blackBackgroundImage?.DOFade(0.8f, _animationDuration)?.SetEase(Ease.Linear);
             _winPopupRectTransform?.DOScale(1.5f, _animationDuration)?.SetEase(Ease.OutBack);
         }
+    }
+    IEnumerator OnPlayerDead(GameState currentGameState, float waitSec)
+    {
+        yield return new WaitForSeconds(waitSec);
+        _blackBacgroundGameobject.SetActive(true);
+        _losePopupGameobject.SetActive(true);
+        OnGameLose?.Invoke(_currentTimer.text);
+        _blackBackgroundImage?.DOFade(0.8f, _animationDuration)?.SetEase(Ease.Linear);
+        _losePopupRectTransform?.DOScale(1.5f, _animationDuration)?.SetEase(Ease.OutBack);
     }
 }

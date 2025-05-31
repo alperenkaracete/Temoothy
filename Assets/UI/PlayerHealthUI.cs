@@ -43,11 +43,14 @@ public class PlayerHealthUI : MonoBehaviour
         {
             for (int i = 0; i < _playerHealths.Length; i++)
             {
-                AnimateHealthChange(i, _playerHealthInactive);
+                AnimateHealthChangeInstant(i, _playerHealthInactive);
             }
         }
     }
-
+    public void AnimateHealthChangeInstant(int index, Sprite targetSprite)
+    {
+        _playerHealths[index].sprite = targetSprite;
+    }
     public void AnimateHealthChange(int index, Sprite targetSprite)
     {
         RectTransform healthTransform = _playerHealthTransforms[index];
