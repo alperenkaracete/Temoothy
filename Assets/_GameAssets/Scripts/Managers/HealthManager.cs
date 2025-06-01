@@ -31,6 +31,7 @@ public class HealthManager : MonoBehaviour
         if (_currentHealth > 0)
         {
             _currentHealth -= damage;
+            GameEffectManager.PlayShakeForDamage();
             OnPlayerGetsDamage?.Invoke(_currentHealth);
         }
 
@@ -39,7 +40,6 @@ public class HealthManager : MonoBehaviour
             GameManager.Instance.ChangeGameState(GameState.GameOver);
             OnPlayerDead?.Invoke(GameState.GameOver);
         }
-
     }
 
     public void Heal(int healAmount)
@@ -54,6 +54,7 @@ public class HealthManager : MonoBehaviour
     public void InstantDead()
     {
         GameManager.Instance.ChangeGameState(GameState.GameOver);
+        GameEffectManager.PlayShakeForInstantDeath();
         OnPlayerInstantDead?.Invoke(GameState.GameOver);
         OnPlayerDead?.Invoke(GameState.GameOver);
     }

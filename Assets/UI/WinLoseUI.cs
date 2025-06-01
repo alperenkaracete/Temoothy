@@ -46,8 +46,8 @@ public class WinLoseUI : MonoBehaviour
     private void OnCatAttackPlayer()
     {
         HealthManager.Instance.InstantDead();
-        float waitSec = 0.5f;
-        StartCoroutine(OnPlayerDead(GameState.GameOver,waitSec));
+        float waitSec = 0.1f;
+        StartCoroutine(OnPlayerDead(waitSec));
     }
 
     private void OnPlayerDead(GameState currentGameState)
@@ -75,7 +75,7 @@ public class WinLoseUI : MonoBehaviour
             _winPopupRectTransform?.DOScale(1.5f, _animationDuration)?.SetEase(Ease.OutBack);
         }
     }
-    IEnumerator OnPlayerDead(GameState currentGameState, float waitSec)
+    IEnumerator OnPlayerDead(float waitSec)
     {
         yield return new WaitForSeconds(waitSec);
         _blackBacgroundGameobject.SetActive(true);

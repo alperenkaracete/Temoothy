@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.8] - 2025-06-01
+
+### Edited
+- Camera shake added.
+- When player dead, or gets any damage camera shakes.
+
 ## [0.2.7] - 2025-06-01
 
 ### Edited
