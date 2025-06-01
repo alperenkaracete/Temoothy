@@ -1,23 +1,29 @@
 # Changelog
 
+## [0.2.5] - 2025-06-01
+
+### Added
+- Shaders added.
+
+
 ## [0.2.5] - 2025-05-31
 
 ### Added
-- Scene transitions polished
-- Smooth transition added
+- Scene transitions polished.
+- Smooth transition added.
 
 ## [0.2.4] - 2025-05-31
 
 ### Added
-- Main menu created
-- Button animations added
+- Main menu created.
+- Button animations added.
 
 ## [0.2.3] - 2025-05-31
 
 ### Added
 - Cat animations added.
-- Cat kills player instantly
-- Game over when cat attacks to player
+- Cat kills player instantly.
+- Game over when cat attacks to player.
 
 ## [0.2.2] - 2025-05-30
 
@@ -34,8 +40,8 @@
 ## [0.2.0] - 2025-05-29
 
 ### Added
-- Added level environment
-- Designed new level
+- Added level environment.
+- Designed new level.
 
 ## [0.1.9] - 2025-05-29
 

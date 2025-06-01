@@ -43,13 +43,19 @@ public class CatController : MonoBehaviour
 
     void Update()
     {
-        if (_playerController.CanCatChase())
+        if (isGameOver())
+        {
+            _catStateController.SetCatState(CatState.Idle);
+            return;
+        }
+
+        else if (_playerController.CanCatChase())
             SetChaseMovement();
 
         else if (!_playerController.CanCatChase())
             SetPatrolMovement();
 
-            Debug.Log(_catStateController.GetCatState());
+        Debug.Log(_catStateController.GetCatState());
     }
 
     private void SetChaseMovement()
@@ -147,6 +153,15 @@ public class CatController : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(pos, _patrolRadius);
 
+    }
+
+    private bool isGameOver()
+    {
+        if (GameManager.Instance.CurrentGameState != GameState.GameOver)
+        {
+            return false;
+        }
+        return true;
     }
 
 }
