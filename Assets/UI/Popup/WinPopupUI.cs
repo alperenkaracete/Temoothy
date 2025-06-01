@@ -22,12 +22,15 @@ public class WinPopupUI : MonoBehaviour
 
     void OnEnable()
     {
+        BackgroundMusic.Instance.PlayBackgroundMusic(false);
+        AudioManager.Instance.Play(SoundType.WinSound);
         _playAgainButton.onClick.AddListener(ReplayLevel);
         _mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
     }
 
     private void OnMainMenuButtonClicked()
     {
+        AudioManager.Instance.Play(SoundType.TransitionSound);
         TransitionManager.Instance.LoadLevel(Others.MENU_SCENE);
     }
 
@@ -37,6 +40,7 @@ public class WinPopupUI : MonoBehaviour
     }
     private void ReplayLevel()
     {
+        AudioManager.Instance.Play(SoundType.TransitionSound);
         GameManager.Instance.ResetInstance();
         TransitionManager.Instance.LoadLevel(Others.GAME_SCENE);
     }

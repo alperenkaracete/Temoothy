@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(_jumpingKey))
         {
+            AudioManager.Instance.Play(SoundType.JumpSound);
             if (IsGrounded())
                 SetJumping();
         }
@@ -166,7 +167,6 @@ public class PlayerController : MonoBehaviour
 
     void SetJumping()
     {
-
         _rigidBody.linearVelocity = new Vector3(_rigidBody.linearVelocity.x, 0f, _rigidBody.linearVelocity.z);
         //Burda Impulse kullanıyoruz çünkü ani bir güç uygular, force süreli bir güç uygular.
         _rigidBody.AddForce(transform.up * _jumpSpeed, ForceMode.Impulse);

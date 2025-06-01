@@ -6,6 +6,7 @@ public class EggCollectible : MonoBehaviour
 
     public void Collect()
     {
+        AudioManager.Instance.Play(SoundType.PickupGoodSound);
         GameManager.Instance.IncreaseTotalEggCount();
         Destroy(gameObject);
     }

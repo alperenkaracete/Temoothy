@@ -22,13 +22,13 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         ChangeGameState(GameState.CutScene);
+        BackgroundMusic.Instance.PlayBackgroundMusic(true);
     }
 
     public void ChangeGameState(GameState gameState)
     {
         _currentGameState = gameState;
         OnGameStateChanged?.Invoke(_currentGameState);
-        Debug.Log((_currentGameState));
     }
 
     public void IncreaseTotalEggCount()

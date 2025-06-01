@@ -30,15 +30,29 @@ public class SettingMenuUI : MonoBehaviour
         _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
         _mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
+        _musicButton.onClick.AddListener(OnMusicButtonClicked);
+        _soundButton.onClick.AddListener(OnSoundButtonClicked);
+    }
+
+    private void OnSoundButtonClicked()
+    {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
+    }
+
+    private void OnMusicButtonClicked()
+    {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
     }
 
     private void OnMainMenuButtonClicked()
     {
+        AudioManager.Instance.Play(SoundType.TransitionSound);
         TransitionManager.Instance.LoadLevel(Others.MENU_SCENE);
     }
 
     private void OnSettingsButtonClicked()
     {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
         GameManager.Instance.ChangeGameState(GameState.Pause);
         _blackBackgroungObject.SetActive(true);
         _settingsPopupObject.SetActive(true);
@@ -49,7 +63,7 @@ public class SettingMenuUI : MonoBehaviour
 
     private void OnResumeButtonClicked()
     {
-
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
         _blackBackgroundImage.DOFade(0f, _animationDuration).SetEase(Ease.Linear);
         _settingsPopupObject.transform.DOScale(0f, _animationDuration).SetEase(Ease.OutExpo).OnComplete(() =>
         {

@@ -8,9 +8,9 @@ public class BrownWheatCollectible : MonoBehaviour,ICollectible
 
     public void Collect()
     {
+        AudioManager.Instance.Play(SoundType.PickupBadSound);
         _playerController.ApplyBrownWheatEffects(_brownWheatDesignSO.IncreaseDecreaseAmount,_brownWheatDesignSO.Duration);
         Destroy(gameObject);
     }
-
 
 }

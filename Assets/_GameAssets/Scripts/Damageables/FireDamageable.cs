@@ -7,6 +7,7 @@ public class FireDamageable : MonoBehaviour, IDamageable
     [SerializeField] private float _force = 10;
     public void GiveDamage(Rigidbody playerControllerRigidBody, Transform playerVisualTransform)
     {
+        AudioManager.Instance.Play(SoundType.ChickSound);
         HealthManager.Instance.Damage(_damageAmount);
         playerControllerRigidBody.AddForce(-playerVisualTransform.forward * _force, ForceMode.Impulse);
         Destroy(gameObject);

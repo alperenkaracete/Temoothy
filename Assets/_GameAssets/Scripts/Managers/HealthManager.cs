@@ -53,6 +53,7 @@ public class HealthManager : MonoBehaviour
 
     public void InstantDead()
     {
+        AudioManager.Instance.Play(SoundType.CatSound);
         GameManager.Instance.ChangeGameState(GameState.GameOver);
         GameEffectManager.PlayShakeForInstantDeath();
         OnPlayerInstantDead?.Invoke(GameState.GameOver);

@@ -1,9 +1,14 @@
 # Changelog
 
-## [0.2.6] - 2025-06-01
+## [0.3.0] - 2025-06-02
 
 ### Edited
-- Cutscene added
+- Sound added.
+
+## [0.2.9] - 2025-06-01
+
+### Edited
+- Cutscene added.
 
 ## [0.2.8] - 2025-06-01
 

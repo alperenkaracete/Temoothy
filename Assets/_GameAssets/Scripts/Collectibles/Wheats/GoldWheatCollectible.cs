@@ -9,6 +9,7 @@ public class GoldWheatCollectible : MonoBehaviour,ICollectible
 
     public void Collect()
     {
+        AudioManager.Instance.Play(SoundType.PickupGoodSound);
         _playerController.ApplyGoldWheatEffects(_goldWheatDesignSO.IncreaseDecreaseAmount, _goldWheatDesignSO.Duration);
         Destroy(gameObject);
     }

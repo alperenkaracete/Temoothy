@@ -8,6 +8,7 @@ public class GreenWheatCollectible : MonoBehaviour,ICollectible
 
     public void Collect()
     {
+        AudioManager.Instance.Play(SoundType.PickupGoodSound);
         _playerController.ApplyGreenWheatEffects(_greenWheatDesignSO.IncreaseDecreaseAmount, _greenWheatDesignSO.Duration);
         Destroy(gameObject);
     }
