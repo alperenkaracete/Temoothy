@@ -1,10 +1,14 @@
 # Changelog
 
-## [0.2.5] - 2025-06-01
+## [0.2.7] - 2025-06-01
+
+### Edited
+- Post processing edited.
+
+## [0.2.6] - 2025-06-01
 
 ### Added
 - Shaders added.
-
 
 ## [0.2.5] - 2025-05-31
 
