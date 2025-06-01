@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.6] - 2025-06-01
+
+### Edited
+- Cutscene added
+
 ## [0.2.8] - 2025-06-01
 
 ### Edited

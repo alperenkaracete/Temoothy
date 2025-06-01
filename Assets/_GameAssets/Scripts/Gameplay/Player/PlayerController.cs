@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody>();
         _currentState = GetComponent<StateController>();
-        _currentState.SetPlayerState(PlayerState.Move);
+        _currentState.SetPlayerState(PlayerState.Watching);
         _rigidBody.freezeRotation = true;
         _currentSpeed = _movementSpeed;
         _startingMovementSpeed = _movementSpeed;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        OnPlayerStateChanged?.Invoke(PlayerState.Idle);
+        OnPlayerStateChanged?.Invoke(PlayerState.Watching);
     }
 
     void Update()
@@ -116,6 +116,8 @@ public class PlayerController : MonoBehaviour
     void SetState()
     {
         PlayerState newState = _currentState.GetPlayerState();
+        if (newState == PlayerState.Watching)
+            return;
         Vector3 movementDirectionNormalized = _movementDirection.normalized;
         bool isGrounded = IsGrounded();
         if (movementDirectionNormalized != Vector3.zero && isGrounded && !isSliding)

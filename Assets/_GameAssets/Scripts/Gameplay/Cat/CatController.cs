@@ -55,7 +55,6 @@ public class CatController : MonoBehaviour
         else if (!_playerController.CanCatChase())
             SetPatrolMovement();
 
-        Debug.Log(_catStateController.GetCatState());
     }
 
     private void SetChaseMovement()

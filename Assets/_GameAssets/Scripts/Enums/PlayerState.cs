@@ -1,6 +1,7 @@
 public enum PlayerState
 {
 
+    Watching,
     Idle,
     Move,
     Jump,

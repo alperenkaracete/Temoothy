@@ -8,7 +8,7 @@ public class StateController : MonoBehaviour
     private PlayerState _currentPlayerState;
     void Start()
     {
-        _currentPlayerState = PlayerState.Idle;
+        _currentPlayerState = PlayerState.Watching;
     }
 
     public void SetPlayerState(PlayerState newPlayerState)

@@ -29,10 +29,18 @@ public class PlayerActionsUI : MonoBehaviour
         _playerController.OnPlayerStateChanged += PlayerController_OnPlayerStateChanged;
     }
 
+    void Start()
+    {
+        _playerMovingImage.sprite = _playerWalkingPassiveSprite;
+        _playerSlidingImage.sprite = _playerSlidingPassiveSprite;
+    }
+
     private void PlayerController_OnPlayerStateChanged(PlayerState playerState)
     {
         switch (playerState)
         {
+            case PlayerState.Watching:
+                break;
             case PlayerState.Idle:
             case PlayerState.Move:
                 SetStateUserInterfaces(_playerWalkingActiveSprite, _playerSlidingPassiveSprite, _playerWalkingTransform, _playerSlidingTransform);
@@ -50,7 +58,7 @@ public class PlayerActionsUI : MonoBehaviour
 
         _playerMovingImage.sprite = playerWalkingSprite;
         _playerSlidingImage.sprite = playerSlidingSprite;
-
+        
         activeTransform.DOAnchorPosX(25f, _moveDuration).SetEase(_moveEase);
         passiveTransform.DOAnchorPosX(0f, _moveDuration).SetEase(_moveEase);
         
