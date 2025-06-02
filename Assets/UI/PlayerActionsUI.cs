@@ -1,4 +1,6 @@
+using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +10,8 @@ public class PlayerActionsUI : MonoBehaviour
     [SerializeField] private RectTransform _playerWalkingTransform;
     [SerializeField] private RectTransform _playerSlidingTransform;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private TMP_Text _moveActionShortcut;
+    [SerializeField] private TMP_Text _runActionShortcut;
 
     [Header("Sprites")]
     [SerializeField] private Sprite _playerWalkingPassiveSprite;
@@ -19,20 +23,52 @@ public class PlayerActionsUI : MonoBehaviour
     [SerializeField] private float _moveDuration;
     [SerializeField] private Ease _moveEase;
 
+    [Header("Buttons")]
+    [SerializeField] private Button _movementButton;
+    [SerializeField] private Button _slideButton;
+
     private Image _playerMovingImage;
     private Image _playerSlidingImage;
+    private bool _playerSliding;
+    public event Action<bool> PlayerSlidingOrMoving;
 
     void Awake()
     {
         _playerMovingImage = _playerWalkingTransform.GetComponent<Image>();
         _playerSlidingImage = _playerSlidingTransform.GetComponent<Image>();
         _playerController.OnPlayerStateChanged += PlayerController_OnPlayerStateChanged;
+
+        _movementButton.onClick.AddListener(PlayerMoving);
+        _slideButton.onClick.AddListener(PlayerSliding);
+
+    }
+
+    private void PlayerSliding()
+    {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
+        _playerSliding = true;
+        PlayerSlidingOrMoving?.Invoke(_playerSliding);
+    }
+
+    private void PlayerMoving()
+    {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
+        _playerSliding = false;
+        PlayerSlidingOrMoving?.Invoke(_playerSliding);
     }
 
     void Start()
     {
         _playerMovingImage.sprite = _playerWalkingPassiveSprite;
         _playerSlidingImage.sprite = _playerSlidingPassiveSprite;
+
+        #if UNITY_STANDALONE
+            _moveActionShortcut.text = "E";
+            _runActionShortcut.text = "R";
+        #elif UNITY_ANDROID
+            _moveActionShortcut.text = "";
+            _runActionShortcut.text = "";
+        #endif
     }
 
     private void PlayerController_OnPlayerStateChanged(PlayerState playerState)

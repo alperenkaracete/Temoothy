@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.3] - 2025-06-03
+
+### Edited
+- Added anroid support.
+
 ## [0.3.2] - 2025-06-02
 
 ### Edited

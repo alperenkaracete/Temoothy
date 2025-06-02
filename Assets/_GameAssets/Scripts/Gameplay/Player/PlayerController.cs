@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _currentSpeed;
     [SerializeField] private PlayerState _state;
     [SerializeField] private SettingMenuUI _settingMenuUI;
+    [SerializeField] private PlayerActionsUI _playerActionsUI;
+    [SerializeField] private JumpButtonUI _jumpButtonUI;
 
     [Header("Movement")]
     [SerializeField] private float _movementSpeed;
@@ -30,14 +32,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _slideSpeed;
     [SerializeField] private KeyCode _slideActivateKey;
 
+    [Header("Joystick")]
+    [SerializeField] private FixedJoystick _fixedJoystick;
+
     private Vector3 _movementDirection;
     private StateController _currentState;
-    private bool isSliding = false;
+    private bool _isSliding = false;
     private bool _isResuming = true;
     private bool _isGameOver = false;
     private float _startingMovementSpeed, _startingSlideSpeed, _startingJumpSpeed;
     private Vector3 _pauseSpeed;
     private float _horizantolInput, _verticalInput;
+    private float _horizantolJoystickInput, _verticalJoystickInput;
 
     void Awake()
     {
@@ -56,6 +62,22 @@ public class PlayerController : MonoBehaviour
         OnPlayerStateChanged?.Invoke(PlayerState.Watching);
         GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
         _settingMenuUI.GameIsResuming += OnResumeButtonClicked;
+        _playerActionsUI.PlayerSlidingOrMoving += OnPlayerSlidingOrMoving;
+        _jumpButtonUI.OnPlayerJump += OnPlayerJump;
+    }
+
+    private void OnPlayerJump()
+    {
+        if (IsGrounded() && GameManager.Instance.CurrentGameState != GameState.CutScene)
+        {
+            AudioManager.Instance.Play(SoundType.JumpSound);
+            SetJumping();
+        }    
+    }
+
+    private void OnPlayerSlidingOrMoving(bool isSliding)
+    {
+        _isSliding = isSliding;
     }
 
     void Update()
@@ -97,24 +119,32 @@ public class PlayerController : MonoBehaviour
 
     void SetInputs()
     {
-        _horizantolInput = Input.GetAxisRaw("Horizontal");
-        _verticalInput = Input.GetAxisRaw("Vertical");
+        if (GameManager.Instance._gamePlatform == GamePlatform.Pc)
+        {
+            _horizantolInput = Input.GetAxisRaw("Horizontal");
+            _verticalInput = Input.GetAxisRaw("Vertical");
+        }
+        else if (GameManager.Instance._gamePlatform == GamePlatform.Android)
+        {
+            _horizantolJoystickInput = _fixedJoystick.Horizontal;
+            _verticalJoystickInput = _fixedJoystick.Vertical;
+        }
 
         if (Input.GetKeyDown(_jumpingKey))
-        {
-            AudioManager.Instance.Play(SoundType.JumpSound);
-            if (IsGrounded())
-                SetJumping();
-        }
+            {
+                AudioManager.Instance.Play(SoundType.JumpSound);
+                if (IsGrounded())
+                    SetJumping();
+            }
 
         if (Input.GetKeyDown(_slideActivateKey))
         {
-            isSliding = true;
+            _isSliding = true;
         }
 
         else if (Input.GetKeyDown(_moveActivateKey))
         {
-            isSliding = false;
+            _isSliding = false;
         }
 
         else if (Input.GetKeyDown(KeyCode.T))
@@ -135,13 +165,13 @@ public class PlayerController : MonoBehaviour
             return;
         Vector3 movementDirectionNormalized = _movementDirection.normalized;
         bool isGrounded = IsGrounded();
-        if (movementDirectionNormalized != Vector3.zero && isGrounded && !isSliding)
+        if (movementDirectionNormalized != Vector3.zero && isGrounded && !_isSliding)
             newState = PlayerState.Move;
-        else if (movementDirectionNormalized != Vector3.zero && isGrounded && isSliding)
+        else if (movementDirectionNormalized != Vector3.zero && isGrounded && _isSliding)
             newState = PlayerState.Slide;
-        else if (movementDirectionNormalized == Vector3.zero && isGrounded && !isSliding)
+        else if (movementDirectionNormalized == Vector3.zero && isGrounded && !_isSliding)
             newState = PlayerState.Idle;
-        else if (movementDirectionNormalized == Vector3.zero && isGrounded && isSliding)
+        else if (movementDirectionNormalized == Vector3.zero && isGrounded && _isSliding)
             newState = PlayerState.SlideIdle;
         else if (!isGrounded)
             newState = PlayerState.Jump;
@@ -168,9 +198,16 @@ public class PlayerController : MonoBehaviour
         }
         else if (!_isResuming)
         {
-            _movementDirection = _orientationTransform.forward * _verticalInput + _orientationTransform.right * _horizantolInput;
+            if (GameManager.Instance._gamePlatform == GamePlatform.Pc)
+            {
+                _movementDirection = _orientationTransform.forward * _verticalInput + _orientationTransform.right * _horizantolInput;
+            }
+            else if (GameManager.Instance._gamePlatform == GamePlatform.Android)
+            {
+                _movementDirection = _orientationTransform.forward * _verticalJoystickInput + _orientationTransform.right * _horizantolJoystickInput;
+            }
             //Eğer burada normalized değil de sadece movement direction kullanılırsa, mesela çapraz gidildiği zaman pisagor alarak daha hızlı ilerler.Bu yüzden normalized alıyoruz ki sağa,sola ve yukarı,aşağı gittiği hıza eşit bir şekilde çapraz da gitsin.
-            float airMultiplier = IsGrounded() ? 1f : 1f;
+                float airMultiplier = IsGrounded() ? 1f : 1f;
             _rigidBody.AddForce(_movementDirection.normalized * _currentSpeed * airMultiplier, ForceMode.Force);
         }
     }
