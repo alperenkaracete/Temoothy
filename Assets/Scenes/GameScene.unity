@@ -3471,6 +3471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 571680869}
   - component: {fileID: 571680874}
+  - component: {fileID: 571680875}
   - component: {fileID: 571680871}
   - component: {fileID: 571680870}
   - component: {fileID: 571680872}
@@ -3514,7 +3515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3617,6 +3618,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cf8e3ab7dcefa4282ca2f33627a263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &571680875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571680868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a81a7b059db9c45b0e160897aeb775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _musicActiveSprite: {fileID: 21300000, guid: b70c31f4b7494cf40ad2dfcb839120cf, type: 3}
+  _musicPassiveSprite: {fileID: 21300000, guid: 11231ee54f9eb5948b175a2a69b0d050, type: 3}
 --- !u!1 &601410041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3714,6 +3729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 616387288}
   - component: {fileID: 616387293}
+  - component: {fileID: 616387294}
   - component: {fileID: 616387290}
   - component: {fileID: 616387289}
   - component: {fileID: 616387291}
@@ -3757,7 +3773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3860,6 +3876,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cf8e3ab7dcefa4282ca2f33627a263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &616387294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616387287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3bf95584b1b4834db2619daada7f9d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundActiveSprite: {fileID: 21300000, guid: 572d015c0604b0b49b09265a1072b1d4, type: 3}
+  _soundPassiveSprite: {fileID: 21300000, guid: 5f1b2ea972b168448b4c057a28eb7f2a, type: 3}
 --- !u!1 &616419110
 GameObject:
   m_ObjectHideFlags: 0

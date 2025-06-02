@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.1] - 2025-06-02
+
+### Edited
+- Sound button become functional.
+
 ## [0.3.0] - 2025-06-02
 
 ### Edited
