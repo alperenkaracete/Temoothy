@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _orientationTransform;
     [SerializeField] private float _currentSpeed;
     [SerializeField] private PlayerState _state;
+    [SerializeField] private SettingMenuUI _settingMenuUI;
 
     [Header("Movement")]
     [SerializeField] private float _movementSpeed;
@@ -32,8 +33,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 _movementDirection;
     private StateController _currentState;
     private bool isSliding = false;
+    private bool _isResuming = true;
+    private bool _isGameOver = false;
     private float _startingMovementSpeed, _startingSlideSpeed, _startingJumpSpeed;
-
+    private Vector3 _pauseSpeed;
     private float _horizantolInput, _verticalInput;
 
     void Awake()
@@ -51,12 +54,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         OnPlayerStateChanged?.Invoke(PlayerState.Watching);
+        GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
+        _settingMenuUI.GameIsResuming += OnResumeButtonClicked;
     }
 
     void Update()
     {
-        if (IsGamePaused())
+        if (IsGameRunning())
+        {
             return;
+        }
         SetInputs();
         SetState();
         SetMovementSpeed();
@@ -77,7 +84,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        IsGamePaused();
+        if (_isGameOver)
+        {
+            _rigidBody.linearVelocity = Vector3.zero;
+        }
+        if (IsGameRunning())
+        {
+            return;
+        }
         SetMovement();
     }
 
@@ -111,7 +125,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.SetTotalCollectedEggCount(4);
             GameManager.Instance.IncreaseTotalEggCount();
-        }        
+        }
     }
 
     void SetState()
@@ -147,10 +161,18 @@ public class PlayerController : MonoBehaviour
 
     void SetMovement()
     {
-        _movementDirection = _orientationTransform.forward * _verticalInput + _orientationTransform.right * _horizantolInput;
-        //Eğer burada normalized değil de sadece movement direction kullanılırsa, mesela çapraz gidildiği zaman pisagor alarak daha hızlı ilerler.Bu yüzden normalized alıyoruz ki sağa,sola ve yukarı,aşağı gittiği hıza eşit bir şekilde çapraz da gitsin.
-        float airMultiplier = IsGrounded() ? 1f : 1f;
-        _rigidBody.AddForce(_movementDirection.normalized * _currentSpeed * airMultiplier, ForceMode.Force);
+        if (_isResuming)
+        {
+            _rigidBody.linearVelocity = _pauseSpeed;
+            _isResuming = false;
+        }
+        else if (!_isResuming)
+        {
+            _movementDirection = _orientationTransform.forward * _verticalInput + _orientationTransform.right * _horizantolInput;
+            //Eğer burada normalized değil de sadece movement direction kullanılırsa, mesela çapraz gidildiği zaman pisagor alarak daha hızlı ilerler.Bu yüzden normalized alıyoruz ki sağa,sola ve yukarı,aşağı gittiği hıza eşit bir şekilde çapraz da gitsin.
+            float airMultiplier = IsGrounded() ? 1f : 1f;
+            _rigidBody.AddForce(_movementDirection.normalized * _currentSpeed * airMultiplier, ForceMode.Force);
+        }
     }
 
     void LimitPlayerSpeed()
@@ -221,7 +243,7 @@ public class PlayerController : MonoBehaviour
         return _rigidBody;
     }
 
-    private bool IsGamePaused()
+    private bool IsGameRunning()
     {
         if (GameManager.Instance.CurrentGameState != GameState.Resume && GameManager.Instance.CurrentGameState != GameState.Play)
         {
@@ -244,5 +266,23 @@ public class PlayerController : MonoBehaviour
             }
         }
         return false;
+    }
+    private void OnResumeButtonClicked()
+    {
+        _isResuming = true;
+    }
+
+    private void OnGameStateChanged(GameState state)
+    {
+        if (state == GameState.Pause)
+        {
+            _isResuming = false;
+            _pauseSpeed = _rigidBody.linearVelocity;
+            _rigidBody.linearVelocity = Vector3.zero;
+        }
+        if (state == GameState.GameOver)
+        {
+            _isGameOver = true;
+        }
     }
 }

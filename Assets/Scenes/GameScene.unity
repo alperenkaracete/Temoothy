@@ -2287,6 +2287,7 @@ MonoBehaviour:
   _orientationTransform: {fileID: 1257048162}
   _currentSpeed: 0
   _state: 0
+  _settingMenuUI: {fileID: 1105964446}
   _movementSpeed: 10
   _moveActivateKey: 101
   _jumpSpeed: 10

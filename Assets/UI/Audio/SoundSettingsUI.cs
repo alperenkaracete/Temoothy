@@ -30,7 +30,7 @@ public class SoundSettingsUI : MonoBehaviour
         {
             AudioManager.Instance.Play(SoundType.ButtonClickSound);
             _isSoundOn = true;
-            AudioManager.Instance.SetSoundEffectsMute(true);
+            AudioManager.Instance.SetSoundEffectsMute(false);
             _soundButtonImage.sprite = _soundActiveSprite;
         }
     }

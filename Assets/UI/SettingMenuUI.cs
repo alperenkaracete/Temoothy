@@ -21,6 +21,7 @@ public class SettingMenuUI : MonoBehaviour
     [SerializeField] private float _animationDuration;
 
     private Image _blackBackgroundImage;
+    public event Action GameIsResuming;
 
     void Awake()
     {
@@ -63,6 +64,7 @@ public class SettingMenuUI : MonoBehaviour
 
     private void OnResumeButtonClicked()
     {
+        GameIsResuming.Invoke();
         AudioManager.Instance.Play(SoundType.ButtonClickSound);
         _blackBackgroundImage.DOFade(0f, _animationDuration).SetEase(Ease.Linear);
         _settingsPopupObject.transform.DOScale(0f, _animationDuration).SetEase(Ease.OutExpo).OnComplete(() =>

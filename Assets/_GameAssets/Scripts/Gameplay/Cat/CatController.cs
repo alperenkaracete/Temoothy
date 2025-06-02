@@ -43,8 +43,9 @@ public class CatController : MonoBehaviour
 
     void Update()
     {
-        if (isGameOver())
+        if (GameStateAllowCatChase())
         {
+            _catAgent.speed = 0f;
             _catStateController.SetCatState(CatState.Idle);
             return;
         }
@@ -154,9 +155,9 @@ public class CatController : MonoBehaviour
 
     }
 
-    private bool isGameOver()
+    private bool GameStateAllowCatChase()
     {
-        if (GameManager.Instance.CurrentGameState != GameState.GameOver)
+        if (GameManager.Instance.CurrentGameState != GameState.GameOver && GameManager.Instance.CurrentGameState != GameState.Pause)
         {
             return false;
         }
