@@ -1,9 +1,17 @@
 # Changelog
 
+## [0.3.4] - 2025-06-04
+
+### Added
+- Added camera rotation.
+
+### Edited
+- Edited readme
+
 ## [0.3.3] - 2025-06-03
 
 ### Edited
-- Added anroid support.
+- Added android support.
 
 ## [0.3.2] - 2025-06-02
 
@@ -17,17 +25,17 @@
 
 ## [0.3.0] - 2025-06-02
 
-### Edited
+### Added
 - Sound added.
 
 ## [0.2.9] - 2025-06-01
 
-### Edited
+### Added
 - Cutscene added.
 
 ## [0.2.8] - 2025-06-01
 
-### Edited
+### Added
 - Camera shake added.
 - When player dead, or gets any damage camera shakes.
 

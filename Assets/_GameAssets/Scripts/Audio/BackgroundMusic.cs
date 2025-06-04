@@ -30,7 +30,9 @@ public class BackgroundMusic : MonoBehaviour
 
     public void PlayBackgroundMusic(bool isMusicPlaying)
     {
+        if (!_audioSource)
+            return;
         if (isMusicPlaying && !_audioSource.isPlaying) _audioSource.Play();
-        else if (!isMusicPlaying) _audioSource.Stop();
+            else if (!isMusicPlaying) _audioSource.Stop();
     }
 }

@@ -64,7 +64,8 @@ public class TimerUI : MonoBehaviour
         int minutes = Mathf.FloorToInt(_elapsedTime / 60f);
         int seconds = Mathf.FloorToInt(_elapsedTime % 60f);
 
-        _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        if (_timerText)
+            _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
     private void PauseTimer()
     {

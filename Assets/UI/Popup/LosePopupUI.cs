@@ -40,6 +40,7 @@ public class LosePopupUI : MonoBehaviour
     }
     private void OnGameLose(string currentClock)
     {
-        _losePopupTimer.text = currentClock;
+        if (_losePopupTimer)
+            _losePopupTimer.text = currentClock;
     }
 }
