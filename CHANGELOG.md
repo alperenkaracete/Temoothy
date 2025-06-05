@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.8] - 2025-06-05
+
+### Modified
+- ReadMe update.
+
 ## [0.3.7] - 2025-06-05
 
 ### Modified

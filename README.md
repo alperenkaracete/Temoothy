@@ -16,6 +16,16 @@ A third-person game prototype developed in Unity. The project focuses on core ga
 - 📜 **Event System**: Uses Unity Events for loose coupling between UI and logic layers.
 - 🖥️📱 **Cross-Platform Support**: Fully playable on both PC and Android.
 
+- ## 🎮 Gameplay Preview
+![Cat Damage](Gif/catdamage.gif)
+![Fire Damage](Gif/firedamage.gif)
+![Jump Buff](Gif/jumpbuff.gif)
+![Movement Buff](Gif/movementbuff.gif)
+![Movement Debuff](Gif/movementdebuff.gif)
+![Spatula Boost](Gif/spatulaboost.gif)
+
+[![Watch the video](https://img.youtube.com/vi/O-RSPMML5Rc/0.jpg)](https://youtu.be/O-RSPMML5Rc)
+
 ## 🛠️ Technologies
 
 - Unity 6
