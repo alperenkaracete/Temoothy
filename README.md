@@ -1,4 +1,4 @@
-# 🕹️ Teemothy
+# 🕹️ Teemothy 🐤
 
 A third-person game prototype developed in Unity. The project focuses on core gameplay mechanics such as movement, pause/resume system, dynamic camera shake, UI transitions, and more.
 
@@ -15,8 +15,6 @@ A third-person game prototype developed in Unity. The project focuses on core ga
 - 🎮 **Main Menu**:   Users can start the game, quit, view the credits, or access the how-to-play instructions.
 - 📜 **Event System**: Uses Unity Events for loose coupling between UI and logic layers.
 - 🖥️📱 **Cross-Platform Support**: Fully playable on both PC and Android.
-  - PC: Use **WASD** for movement, **Spacebar** to jump, and **E/R** for actions like moving,sliding.
-  - Android: On-screen **joystick** for movement, **jump** and **slide/move** buttons for interaction.
 
 ## 🛠️ Technologies
 
@@ -26,3 +24,52 @@ A third-person game prototype developed in Unity. The project focuses on core ga
 - Cinemachine
 - Transition Manager
 - Joystick Package
+
+## 🎮 How To Play
+
+### Controls:
+- **PC**: Use **WASD** to move, **Spacebar** to jump, and **E** / **R** for sliding or special actions.
+- **Android**: Use the on-screen **joystick** for movement, and **Jump** / **Slide** buttons for actions.
+
+---
+
+### 🥖 Collectibles:
+- **Wheats** (3 types):
+  - **Green Wheat**: Increases jump distance.
+  - **Golden Wheat**: Increases movement speed.
+  - **Brown Wheat**: Decreases movement speed.
+  
+- **Eggs** (5 types):
+  - Collecting all 5 eggs results in a **win**.
+
+---
+
+### 💀 Damage Sources:
+- **Cat**:
+  - The cat moves on a NavMesh surface.
+  - When the player enters the area, the cat starts chasing.
+  - If caught by the cat, the game is **lost**.
+
+- **Fire**:
+  - Jumping on fire causes the player to lose **1 health** and be pushed away with force.
+
+---
+
+### 🚀 Boostables:
+- **Spatula**:
+  - Jumping on a spatula gives the player a **jump boost**.
+
+---
+
+### 🕹️ Player Actions:
+- **Move**: Player moves at a fixed speed.
+- **Slide**: Faster than normal movement, used for quick bursts.
+- **Jump**: Standard jump action.
+
+---
+
+### 🏁 Win / Lose Conditions:
+- **Win**: Collect all 5 eggs.
+- **Lose**: 
+  - Get caught by the cat, or  
+  - Lose all 3 health points.

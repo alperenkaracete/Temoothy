@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.5] - 2025-06-05
+
+### Added
+- Added how to play and credits button.
+
 ## [0.3.4] - 2025-06-04
 
 ### Added
