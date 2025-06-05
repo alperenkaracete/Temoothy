@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.7] - 2025-06-05
+
+### Modified
+- Giffs added.
+
 ## [0.3.6] - 2025-06-05
 
 ### Modified
