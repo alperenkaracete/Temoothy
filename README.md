@@ -24,7 +24,7 @@ A third-person game prototype developed in Unity. The project focuses on core ga
 ![Movement Debuff](Gif/movementdebuff.gif)
 ![Spatula Boost](Gif/spatulaboost.gif)
 
-[![Watch the video](https://img.youtube.com/vi/O-RSPMML5Rc/0.jpg)](https://youtu.be/O-RSPMML5Rc)
+[![Watch the video](https://img.youtube.com/vi/O-RSPMML5Rc/0.jpg)](https://youtu.be/ERTocbTElkI)
 
 ## 🛠️ Technologies
 
